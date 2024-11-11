@@ -7,34 +7,34 @@
                 <form action="/listings" method="post" novalidate class="needs-validation">
                     <div class="mb-3">
                         <label for="title">Title</label>
-                        <input type="text" placeholder="enter a catchy title" name="title" class="form-control"
+                        <input type="text" placeholder="enter a catchy title" name="listing[title]" class="form-control"
                             required>
                         <div class="valid-feedback">Title is valid</div>
                         <div class="invalid-feedback">Title is not valid</div>
                     </div>
                     <div class="mb-3">
                         <label for="description">Description</label>
-                        <textarea placeholder="enter description" name="description" class="form-control"
+                        <textarea placeholder="enter description" name="listing[description]" class="form-control"
                             required></textarea>
                         <div class="valid-feedback">Description is valid</div>
                         <div class="invalid-feedback">Description is not valid</div>
                     </div>
                     <div class="">
                         <label for="image">Image</label>
-                        <input type="text" placeholder="enter image link/url" name="image" class="form-control">
+                        <input type="text" placeholder="enter image link/url" name="listing[image]" class="form-control">
                         <div class="valid-feedback">Image is valid</div>
                         <div class="invalid-feedback">Image is not valid</div>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-md-4">
                             <label for="price">Price</label>
-                            <input type="" placeholder="Ex : 1200" name="price" class="form-control" required>
+                            <input type="number" placeholder="Ex : 1200" name="listing[price]" class="form-control" required>
                             <div class="valid-feedback">Price is valid</div>
                             <div class="invalid-feedback">Price is not valid</div>
                         </div>
                         <div class="mb-3 col-md-8">
                             <label for="location">Location</label>
-                            <input type="text" placeholder="Ex : Haridwar" name="location" class="form-control"
+                            <input type="text" placeholder="Ex : Haridwar" name="listing[location]" class="form-control"
                                 required>
                             <div class="valid-feedback">Location is valid</div>
                             <div class="invalid-feedback">Location is not valid</div>
@@ -42,7 +42,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="country">Country</label>
-                        <input type="text" placeholder="ex : India" name="country" class="form-control" required>
+                        <input type="text" placeholder="ex : India" name="listing[country]" class="form-control" required>
                         <div class="valid-feedback">Country is valid</div>
                         <div class="invalid-feedback">Country is not valid</div>
                     </div>

@@ -7,6 +7,7 @@ const methodOverride = require("method-override");
 const ejsMate = require("ejs-mate");
 const wrapAsync = require("./utils/wrapAsync");
 const ExpressError = require("./utils/ExpressError");
+const { listingSchema } = require("./listingschema");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -28,6 +29,17 @@ main()
   .catch((err) => {
     console.log(err);
   });
+
+  const validateListing = (req, res, next) => {
+    let { error } = listingSchema.validate(req.body);
+    if (error) {
+      let errMsg = error.details.map((el) => el.message).join(", ");
+      throw new ExpressError(400, errMsg);
+    } else {
+      next();
+    }
+  };
+  
 
 app.get("/", (req, res) => {
   res.send("I am root");
@@ -76,11 +88,11 @@ app.get(
 //create route
 app.post(
   "/listings",
+  validateListing,
   wrapAsync(async (req, res) => {
-    if (!req.body.listing) {
-      throw new ExpressError(400, "Send valid data for listing");
-    }
-    const { title, description, image, location, country, price } = req.body;
+    
+    console.log(req.body);
+    const { title, description, image, location, country, price } = req.body.listing;
     const newListing = new Listing({
       title,
       description,
@@ -108,10 +120,8 @@ app.get(
 // update route
 app.put(
   "/listings/:id",
+  validateListing,
   wrapAsync(async (req, res) => {
-    if (!req.body.listing) {
-      throw new ExpressError(400, "Send valid data for listing");
-    }
     const { id } = req.params;
     const { title, description, image, price, location, country } = req.body;
 
