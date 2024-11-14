@@ -4,7 +4,9 @@
         <div class="row">
             <div class="col-8">
                 <div class="card col-6">
-                 <h3><%= listing.title %></h3>
+                    <h3>
+                        <%= listing.title %>
+                    </h3>
                     <img src="<%= listing.image %>" class="card-img-top show-img" alt="image">
                     <div class="card-body">
                         <p class="card-text">
@@ -21,6 +23,25 @@
                                 <button class="btn delete-btn ">Delete</button>
                             </form>
                         </div>
+
+                        <hr>
+
+                        <div>
+                            <h4>Leave a Review</h4>
+                            <form action="/listings/<%= listing._id %>/reviews" method="post" novalidate class="needs-validation">
+                                <div class="mb-3 mt-3">
+                                    <label class="form-label" for="rating">Rating</label>
+                                    <input class="form-range" type="range" min="1" max="5" name="review[rating]" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="review[comments]">Comments</label>
+                                    <textarea class="form-control" name="review[comments]" placeholder="Comments" required id="comments"></textarea>
+                                    <div class="invalid-feedback">Please leave some comments for review</div>
+                                </div>
+                               <button class="btn btn-outline-dark">Submit</button>
+                            </form>
+                        </div>
+
                     </div>
                 </div>
 
