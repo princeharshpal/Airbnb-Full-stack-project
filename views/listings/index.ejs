@@ -9,7 +9,7 @@
         <h3 class="offset-1 mt-3">All listings</h3>
         <div class="row row-col-lg-3 row-col-md-2 row-col-sm-1">
             <% for(let listing of allListings){ %>
-            <div class="card" style="width: 20rem;">
+            <div class="card listing-card" style="width: 20rem;">
                     <a href="/listings/<%= listing._id %>">
                         <img src="<%= listing.image %>" class="card-img-top" alt="listing image" style="height: 20rem;">
                     </a>

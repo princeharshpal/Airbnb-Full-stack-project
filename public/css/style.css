@@ -64,7 +64,7 @@ footer{
 .f-info-links{
     margin: 1rem 0;
 }
-.card{
+.listing-card{
     border: none !important;
     margin-bottom: 2rem;
     transition: all 0.2s ease-in-out;
