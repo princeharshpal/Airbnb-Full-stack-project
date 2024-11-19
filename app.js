@@ -132,19 +132,19 @@ app.put(
   "/listings/:id",
   validateListing,
   wrapAsync(async (req, res) => {
-    const { id } = req.params;
-    const { title, description, image, price, location, country } = req.body;
+      const { id } = req.params;
+      const { title, description, image, price, location, country } = req.body.listing;
 
-    await Listing.findByIdAndUpdate(id, {
-      title,
-      description,
-      image,
-      price,
-      location,
-      country,
-    });
+      await Listing.findByIdAndUpdate(id, {
+          title,
+          description,
+          image,
+          price,
+          location,
+          country,
+      });
 
-    res.redirect(`/listings/${id}`);
+      res.redirect(`/listings/${id}`);
   })
 );
 
