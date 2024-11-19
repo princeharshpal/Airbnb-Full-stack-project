@@ -9,7 +9,7 @@ const ExpressError = require("./utils/ExpressError");
 const MONGO_URL = "mongodb://127.0.0.1:27017/wanderlust";
 
 const listings = require("./routes/listing");
-const reviews = require("./routes/listing");
+const reviews = require("./routes/review");
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
