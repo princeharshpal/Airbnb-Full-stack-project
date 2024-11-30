@@ -1,0 +1,37 @@
+<% layout("/layouts/boilerplate") %>
+
+
+    <body>
+        <form action="/login" method="post" class="needs-validation col-6 offset-3 mt-3" novalidate>
+            <h2 class="mx-auto">Log In</h2>
+
+            <form action="/listings" method="post" novalidate class="needs-validation">
+
+                <div class="mb-3">
+                    <label for="username">Username</label>
+                    <input 
+                    type="text" 
+                    placeholder="username" 
+                    name="username" 
+                    class="form-control mt-1"
+                    required>
+                    <div class="valid-feedback">Looks Good</div>
+                    <div class="invalid-feedback">Username is not valid</div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="username">Password</label>
+                    <input 
+                    type="password" 
+                    placeholder="password" 
+                    name="password" 
+                    class="form-control mt-1"
+                    required>
+                    <div class="valid-feedback">Looks Good</div>
+                    <div class="invalid-feedback">Password is not valid</div>
+                </div>
+
+                <button class="mt-1 btn btn-success">Log In</button>
+
+            </form>
+    </body>
