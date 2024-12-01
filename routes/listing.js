@@ -4,7 +4,8 @@ const { listingSchema } = require("../schema");
 const ExpressError = require("../utils/ExpressError");
 const wrapAsync = require("../utils/wrapAsync");
 const Listing = require("../models/listing");
-const flash = require("connect-flash")
+const flash = require("connect-flash");
+const { isLoggedIn } = require("../middlewares");
 
 const validateListing = (req, res, next) => {
   let { error } = listingSchema.validate(req.body);
@@ -26,7 +27,7 @@ router.get(
 );
 
 //new route
-router.get("/new", (req, res) => {
+router.get("/new", isLoggedIn, (req, res) => {
   res.render("listings/new");
 });
 
@@ -36,9 +37,9 @@ router.get(
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     let listing = await Listing.findById(id).populate("reviews");
-    if(!listing){
-      req.flash("error", "Listing you trying to access does not exists")
-      res.redirect("/listings")
+    if (!listing) {
+      req.flash("error", "Listing you trying to access does not exists");
+      res.redirect("/listings");
     }
     res.render("listings/show", { listing });
   })
@@ -47,6 +48,7 @@ router.get(
 //create route
 router.post(
   "/",
+  isLoggedIn,
   validateListing,
   wrapAsync(async (req, res) => {
     console.log(req.body);
@@ -62,7 +64,7 @@ router.post(
     });
 
     await newListing.save();
-    req.flash("success", "New Listing Created!")
+    req.flash("success", "New Listing Created!");
     res.redirect("/listings");
   })
 );
@@ -70,12 +72,13 @@ router.post(
 //edit route
 router.get(
   "/:id/edit",
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     let { id } = req.params;
     const listing = await Listing.findById(id);
-    if(!listing){
-      req.flash("error", "Listing you trying to access does not exists")
-      res.redirect("/listings")
+    if (!listing) {
+      req.flash("error", "Listing you trying to access does not exists");
+      res.redirect("/listings");
     }
     res.render("listings/edit", { listing });
   })
@@ -84,6 +87,7 @@ router.get(
 // update route
 router.put(
   "/:id",
+  isLoggedIn,
   validateListing,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
@@ -98,7 +102,7 @@ router.put(
       location,
       country,
     });
-    req.flash("success", "Listing Updated!")
+    req.flash("success", "Listing Updated!");
     res.redirect(`/listings/${id}`);
   })
 );
@@ -106,11 +110,12 @@ router.put(
 //delete route
 router.delete(
   "/:id",
+  isLoggedIn,
   wrapAsync(async (req, res) => {
     const { id } = req.params;
     let deletedListing = await Listing.findByIdAndDelete(id);
     console.log(deletedListing);
-    req.flash("success", "Listing Deleted!")
+    req.flash("success", "Listing Deleted!");
     res.redirect("/listings");
   })
 );
