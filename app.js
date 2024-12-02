@@ -74,10 +74,6 @@ app.use("/listings", listingRouter);
 app.use("/listings/:id/reviews", reviewRouter);
 app.use("/", userRouter);
 
-app.get("/", (req, res) => {
-  res.send("I am root");
-});
-
 app.all("*", (req, res, next) => {
   next(new ExpressError(404, "Page not found"));
 });

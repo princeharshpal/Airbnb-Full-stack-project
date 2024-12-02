@@ -102,3 +102,38 @@ footer {
   height: 400px;
   width: 100vh;
 }
+
+#filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.filters {
+  margin-right: 2rem;
+  text-align: center;
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.filters:hover {
+  opacity: 1;
+}
+
+.filters p {
+  font-size: 0.8rem;
+}
+
+.taxes {
+  display: none;
+}
+.tax-toggle {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid black;
+  height: 3.5rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  margin-left: 7.5rem;
+}
